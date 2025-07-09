@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\CategorizedCleaning\1.6\Assemblies\</OutputPath>
+    <OutputPath>..\CategorizedCleaningSplit\1.6\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\CategorizedCleaning\1.6\Assemblies\</OutputPath>
+    <OutputPath>..\CategorizedCleaningSplit\1.6\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,10 +38,8 @@
     <Compile Include="CategorizedCleaning_Debug.cs" />
     <Compile Include="FilthCache.cs" />
     <Compile Include="HarmonyPatches\DebugDrawInjection.cs" />
-    <Compile Include="StaticFilthCache.cs" />
     <Compile Include="HarmonyPatches\ListerFilthInHomeArea_Patches.cs" />
     <Compile Include="HarmonyPatches\Room_Patches.cs" />
-    <Compile Include="MapFilthCache.cs" />
     <Compile Include="RoomRoleDefOf_Custom.cs" />
     <Compile Include="ThingHelper.cs" />
     <Compile Include="WorkGivers\WorkGiver_CleanFilth_Indoors.cs" />
@@ -57,6 +55,8 @@
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.3.6</Version>
+      <PrivateAssets>true</PrivateAssets>
+      <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
@@ -64,7 +64,7 @@
   <PropertyGroup>
     <PostBuildEvent>PATH
 
-"$(ProjectDir)Install.bat" $(ConfigurationName) "$(ProjectDir)..\$(ProjectName)\" "$(ProjectName)" "About Textures 1.6" "LoadFolders.xml"
+"$(ProjectDir)Install.bat" $(ConfigurationName) "$(ProjectDir)..\$(ProjectName)Split\" "$(ProjectName)Split" "About Textures 1.6" "LoadFolders.xml"
 
 </PostBuildEvent>
   </PropertyGroup>

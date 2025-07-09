@@ -70,13 +70,6 @@ SET SOLUTION_DIR=%~2
 SET TARGET_DIR=%RIMWORLD_DIR_STEAM%\Mods\%~3
 SET ZIP_EXE="C:\Program Files\7-Zip\7z.exe"
 
-IF %1==Debug (
-	IF EXIST "%MOD_DLL_PATH:~0,-4%.pdb" (
-		ECHO "Creating mdb at %MOD_DLL_PATH%"
-		"%MONO_EXE%" "%PDB2MDB_PATH%" "%MOD_DLL_PATH%" 1>NUL
-	)
-)
-
 IF %1==Release (
 	IF EXIST "%MOD_DLL_PATH%.mdb" (
 		ECHO "Deleting %MOD_DLL_PATH%.mdb"
