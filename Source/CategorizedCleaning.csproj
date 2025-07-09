@@ -39,7 +39,10 @@
     <Compile Include="FilthCache.cs" />
     <Compile Include="HarmonyPatches\DebugDrawInjection.cs" />
     <Compile Include="HarmonyPatches\ListerFilthInHomeArea_Patches.cs" />
+    <Compile Include="HarmonyPatches\Pawn_WorkSettings_ExposeData_Patches.cs" />
     <Compile Include="HarmonyPatches\Room_Patches.cs" />
+    <Compile Include="PatchOps\PatchOperationAddOrReplace.cs" />
+    <Compile Include="PatchOps\SharedUtils.cs" />
     <Compile Include="RoomRoleDefOf_Custom.cs" />
     <Compile Include="ThingHelper.cs" />
     <Compile Include="WorkGivers\WorkGiver_CleanFilth_Indoors.cs" />

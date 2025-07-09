@@ -12,6 +12,10 @@ namespace PeteTimesSix.CategorizedCleaning
     {
         //public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForGroup(ThingRequestGroup.Undefined);
 
+        public override bool ShouldSkip(Pawn pawn, bool forced = false)
+        {
+            return base.ShouldSkip(pawn, forced) || pawn.Map.GetComponent<FilthCache>().filthInSterileRooms.Count == 0;
+        }
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
             return pawn.Map.GetComponent<FilthCache>().filthInSterileRooms;

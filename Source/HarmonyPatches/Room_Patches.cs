@@ -13,24 +13,16 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
     [HarmonyPatch(typeof(Room), nameof(Room.Notify_RoomShapeChanged))]
     public static class Room_Notify_RoomShapeChanged_Patches
     {
-        public static List<Filth> filthsPre = new();
-
         [HarmonyPrefix]
         public static void Room_Notify_RoomShapeChanged_Prefix(Room __instance)
         {
-            filthsPre.AddRange(__instance.ContainedThings<Filth>());
-        }
-
-        [HarmonyPostfix]
-        public static void Room_Notify_RoomShapeChanged_Postfix(Room __instance) 
-        {
             var cache = __instance.Map.GetComponent<FilthCache>();
-            foreach (Filth filth in filthsPre)
+            var filths = __instance.ContainedThings<Filth>().ToList();
+            foreach (Filth filth in filths)
             {
                 cache.RemoveFilth(filth);
                 cache.AddFilth(filth);
             }
-            filthsPre.Clear();
         }
     }
 
@@ -40,8 +32,11 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
     {
         public static FieldRef<Room, RoomRoleDef> field_roleInt;
 
-        public static RoomRoleDef rolePre;
-        public static List<Filth> filthsPre = new();
+        public class State
+        {
+            public RoomRoleDef rolePre;
+            public List<Filth> filthsPre = new();
+        }
 
         static Room_UpdateRoomStatsAndRole_Patches() 
         {
@@ -49,26 +44,24 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
         }
 
         [HarmonyPrefix]
-        public static void Room_UpdateRoomStatsAndRole_Prefix(Room __instance)
+        public static void Room_UpdateRoomStatsAndRole_Prefix(Room __instance, out State __state)
         {
-            rolePre = field_roleInt(__instance);
-            filthsPre.AddRange(__instance.ContainedThings<Filth>());
+            __state = new State() { rolePre = field_roleInt(__instance) };
+            __state.filthsPre.AddRange(__instance.ContainedThings<Filth>());
         }
 
         [HarmonyPostfix]
-        public static void Room_UpdateRoomStatsAndRole_Postfix(Room __instance)
+        public static void Room_UpdateRoomStatsAndRole_Postfix(Room __instance, State __state)
         {
-            if (rolePre != field_roleInt(__instance))
+            if (__state.rolePre != field_roleInt(__instance))
             {
                 var cache = __instance.Map.GetComponent<FilthCache>();
-                foreach (Filth filth in filthsPre)
+                foreach (Filth filth in __state.filthsPre)
                 {
                     cache.RemoveFilth(filth);
                     cache.AddFilth(filth);
                 }
             }
-            rolePre = null;
-            filthsPre.Clear();
         }
     }
 }
