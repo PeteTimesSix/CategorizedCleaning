@@ -19,7 +19,6 @@ namespace PeteTimesSix.CategorizedCleaning
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
             return pawn.Map.GetComponent<FilthCache>().filthInSterileRooms;
-            //return StaticFilthCache.GetMapFilthCache(pawn.Map).FilthInSterileRooms;
         }
 
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)

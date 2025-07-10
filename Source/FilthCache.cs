@@ -54,24 +54,11 @@ namespace PeteTimesSix.CategorizedCleaning
             }
         }
 
-        public void Notify_FilthSpawned(Filth f)
-        {
-            if (map.areaManager.Home[f.Position])
-            {
-                AddFilth(f);
-            }
-        }
-
-        public void Notify_FilthDespawned(Filth f)
-        {
-            RemoveFilth(f);
-        }
-
         public void Notify_HomeAreaChanged(IntVec3 c)
         {
+            List<Thing> thingList = c.GetThingList(map);
             if (map.areaManager.Home[c])
             {
-                List<Thing> thingList = c.GetThingList(map);
                 for (int i = 0; i < thingList.Count; i++)
                 {
                     if (thingList[i] is Filth filth)
@@ -80,22 +67,14 @@ namespace PeteTimesSix.CategorizedCleaning
                     }
                 }
             }
-            else 
+            else
             {
-                for (int index = filthOutdoors.Count - 1; index >= 0; index--)
+                for (int i = 0; i < thingList.Count; i++)
                 {
-                    if (filthOutdoors[index].Position == c)
-                        filthOutdoors.RemoveAt(index);
-                }
-                for (int index = filthIndoors.Count - 1; index >= 0; index--)
-                {
-                    if (filthIndoors[index].Position == c)
-                        filthIndoors.RemoveAt(index);
-                }
-                for (int index = filthInSterileRooms.Count - 1; index >= 0; index--)
-                {
-                    if (filthInSterileRooms[index].Position == c)
-                        filthInSterileRooms.RemoveAt(index);
+                    if (thingList[i] is Filth filth)
+                    {
+                        RemoveFilth(filth);
+                    }
                 }
             }
         }
