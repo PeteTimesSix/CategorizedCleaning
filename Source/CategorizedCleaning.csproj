@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\CategorizedCleaningSplit\1.6\Assemblies\</OutputPath>
+    <OutputPath>..\CategorizedCleaningCombo\1.6\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\CategorizedCleaningSplit\1.6\Assemblies\</OutputPath>
+    <OutputPath>..\CategorizedCleaningCombo\1.6\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,7 +39,6 @@
     <Compile Include="FilthCache.cs" />
     <Compile Include="HarmonyPatches\DebugDrawInjection.cs" />
     <Compile Include="HarmonyPatches\ListerFilthInHomeArea_Patches.cs" />
-    <Compile Include="HarmonyPatches\Pawn_WorkSettings_ExposeData_Patches.cs" />
     <Compile Include="HarmonyPatches\Room_Patches.cs" />
     <Compile Include="PatchOps\PatchOperationAddOrReplace.cs" />
     <Compile Include="PatchOps\SharedUtils.cs" />
@@ -67,7 +66,7 @@
   <PropertyGroup>
     <PostBuildEvent>PATH
 
-"$(ProjectDir)Install.bat" $(ConfigurationName) "$(ProjectDir)..\$(ProjectName)Split\" "$(ProjectName)Split" "About Textures 1.6" "LoadFolders.xml"
+"$(ProjectDir)Install.bat" $(ConfigurationName) "$(ProjectDir)..\$(ProjectName)Combo\" "$(ProjectName)Combo" "About Textures 1.6" "LoadFolders.xml"
 
 </PostBuildEvent>
   </PropertyGroup>
