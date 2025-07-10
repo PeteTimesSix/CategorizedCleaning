@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Categorized Cleaning - Split Ed.</name>
+	<name>Categorized Cleaning - Combo Ed.</name>
 	<author>PeteTimesSix</author>  
-	<packageId>PeteTimesSix.CategorizedCleaning.Split</packageId>
+	<packageId>PeteTimesSix.CategorizedCleaning.Combo</packageId>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
@@ -15,7 +15,7 @@
       </li>
     </modDependencies>
 	<incompatibleWith>
-		<li>PeteTimesSix.CategorizedCleaning.Combo</li>
+		<li>PeteTimesSix.CategorizedCleaning.Split</li>
 	</incompatibleWith>
 	<loadBefore>
 	</loadBefore>
@@ -23,12 +23,10 @@
 		<li>brrainz.harmony</li>
 	</loadAfter>
 	<description>
-Splits the cleaning work type into three:
+Splits the cleaning filth work into three, in descending priority order:
 
 One for sterile rooms (kitchens, hospital and laboratories)
 One for indoor cleaning
 One for outdoor cleaning
-
-Each can be individually prioritized.
 	</description>
 </ModMetaData>
