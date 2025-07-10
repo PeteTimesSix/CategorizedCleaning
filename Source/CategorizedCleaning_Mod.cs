@@ -24,7 +24,7 @@ namespace PeteTimesSix.CategorizedCleaning
             Harmony.PatchAll();
         }
 
-        /*public override string SettingsCategory()
+        public override string SettingsCategory()
         {
             return "CategorizedCleaning_ModTitle".Translate();
         }
@@ -32,7 +32,7 @@ namespace PeteTimesSix.CategorizedCleaning
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Settings.DoSettingsWindowContents(inRect);
-        }*/
+        }
     }
 
 

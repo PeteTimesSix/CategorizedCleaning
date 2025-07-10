@@ -16,7 +16,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>embedded</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\CategorizedCleaningCombo\1.6\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -44,6 +44,7 @@
     <Compile Include="PatchOps\PatchOperationAddOrReplace.cs" />
     <Compile Include="PatchOps\SharedUtils.cs" />
     <Compile Include="RoomRoleDefOf_Custom.cs" />
+    <Compile Include="Textures_Custom.cs" />
     <Compile Include="ThingHelper.cs" />
     <Compile Include="WorkGivers\WorkGiver_CleanFilth_Indoors.cs" />
     <Compile Include="WorkGivers\WorkGiver_CleanFilth_Outdoors.cs" />
