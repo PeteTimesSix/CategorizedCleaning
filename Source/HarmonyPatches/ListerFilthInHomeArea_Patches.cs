@@ -40,7 +40,7 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
         public static void ListerFilthInHomeArea_Notify_FilthSpawned_Postfix(ListerFilthInHomeArea __instance, Filth f) 
         {
             var map = __instance.GetMap();
-            map.GetComponent<FilthCache>().Notify_FilthSpawned(f);
+            map.GetComponent<FilthCache>().AddFilth(f);
         }
     }
 
@@ -51,7 +51,7 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
         public static void ListerFilthInHomeArea_Notify_FilthDespawned_Postfix(ListerFilthInHomeArea __instance, Filth f)
         {
             var map = __instance.GetMap();
-            map.GetComponent<FilthCache>().Notify_FilthDespawned(f);
+            map.GetComponent<FilthCache>().RemoveFilth(f);
         }
     }
 
