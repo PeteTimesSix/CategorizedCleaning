@@ -41,6 +41,7 @@
     <Compile Include="HarmonyPatches\ListerFilthInHomeArea_Patches.cs" />
     <Compile Include="HarmonyPatches\Pawn_WorkSettings_ExposeData_Patches.cs" />
     <Compile Include="HarmonyPatches\Room_Patches.cs" />
+    <Compile Include="ModCompat\CommonSense.cs" />
     <Compile Include="PatchOps\PatchOperationAddOrReplace.cs" />
     <Compile Include="PatchOps\SharedUtils.cs" />
     <Compile Include="RoomRoleDefOf_Custom.cs" />
