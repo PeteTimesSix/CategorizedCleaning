@@ -80,11 +80,17 @@ namespace PeteTimesSix.CategorizedCleaning
                 return;
 
             if (filth.IsOutsideOrInBarn())
+            {
                 filthOutdoors.Add(filth);
+            }
             else if (filth.IsInSterileRoom())
+            {
                 filthInSterileRooms.Add(filth);
+            }
             else
+            {
                 filthIndoors.Add(filth);
+            }
         }
 
         public void RebuildAll()
