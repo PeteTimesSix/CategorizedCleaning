@@ -45,7 +45,7 @@
     <Compile Include="PatchOps\SharedUtils.cs" />
     <Compile Include="RoomRoleDefOf_Custom.cs" />
     <Compile Include="Textures_Custom.cs" />
-    <Compile Include="ThingHelper.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="WorkGivers\WorkGiver_CleanFilth_Indoors.cs" />
     <Compile Include="WorkGivers\WorkGiver_CleanFilth_Outdoors.cs" />
     <Compile Include="WorkGivers\WorkGiver_CleanFilth_Sterile.cs" />

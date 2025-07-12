@@ -3,6 +3,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
@@ -20,8 +21,7 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
             var filths = __instance.ContainedThings<Filth>().ToList();
             foreach (Filth filth in filths)
             {
-                cache.RemoveFilth(filth);
-                cache.AddFilth(filth);
+                cache.UpdateFilth(filth);
             }
         }
     }
@@ -30,7 +30,49 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
     [HarmonyPatch(typeof(Room), "UpdateRoomStatsAndRole")]
     public static class Room_UpdateRoomStatsAndRole_Patches
     {
-        public static FieldRef<Room, RoomRoleDef> field_roleInt;
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> Room_UpdateRoomStatsAndRole_Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var toMatch = new CodeMatch(OpCodes.Stfld, Field(typeof(Room), "role"));
+
+            var prefix = new CodeInstruction[]
+            {
+                new CodeInstruction(OpCodes.Dup),
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldfld, Field(typeof(Room), "role")),
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Call, Method(typeof(Room_UpdateRoomStatsAndRole_Patches), nameof(PreChangeCompare))),
+            };
+
+
+            foreach (CodeInstruction instruction in instructions)
+            {
+                if(toMatch.opcode == instruction.opcode && toMatch.operand == instruction.operand)
+                {
+                    foreach (var prefixInstruction in prefix)
+                    {
+                        yield return prefixInstruction;
+                    }
+                }
+                yield return instruction;
+            }
+        }
+
+        public static void PreChangeCompare(RoomRoleDef first, RoomRoleDef second, Room room)
+        {
+            //Log.Message("comparing " + first.defName + " to " + second.defName);
+            if(first != second)
+            {
+                var filths = room.ContainedThings<Filth>();
+                var cache = room.Map.GetComponent<FilthCache>();
+                foreach (Filth filth in filths)
+                {
+                    cache.UpdateFilth(filth);
+                }
+            }
+        }
+
+        /*public static FieldRef<Room, RoomRoleDef> field_roleInt;
 
         public class State
         {
@@ -48,6 +90,7 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
         {
             __state = new State() { rolePre = field_roleInt(__instance) };
             __state.filthsPre.AddRange(__instance.ContainedThings<Filth>());
+            Log.Message("call coming from");
         }
 
         [HarmonyPostfix]
@@ -58,10 +101,9 @@ namespace PeteTimesSix.CategorizedCleaning.HarmonyPatches
                 var cache = __instance.Map.GetComponent<FilthCache>();
                 foreach (Filth filth in __state.filthsPre)
                 {
-                    cache.RemoveFilth(filth);
-                    cache.AddFilth(filth);
+                    cache.UpdateFilth(filth);
                 }
             }
-        }
+        }*/
     }
 }

@@ -18,6 +18,51 @@ namespace PeteTimesSix.CategorizedCleaning
         {
         }
 
+        public void UpdateFilth(Filth filth)
+        {
+            if (!map.areaManager.Home[filth.Position])
+            {
+                RemoveFilth(filth);
+                return;
+            }
+            else
+            {
+                if (filth.IsInSterileRoom())
+                {
+                    if(!filthInSterileRooms.Contains(filth))
+                    {
+                        bool removed =
+                            filthIndoors.Remove(filth);
+                        if (!removed)
+                            removed = filthOutdoors.Remove(filth);
+                        filthInSterileRooms.Add(filth);
+                    }
+                }
+                else if (!filth.IsOutsideOrInBarn())
+                {
+                    if(!filthIndoors.Contains(filth))
+                    {
+                        bool removed =
+                            filthInSterileRooms.Remove(filth);
+                        if (!removed)
+                            removed = filthOutdoors.Remove(filth);
+                        filthIndoors.Add(filth);
+                    }
+                }
+                else
+                {
+                    if(!filthOutdoors.Contains(filth))
+                    {
+                        bool removed =
+                            filthInSterileRooms.Remove(filth);
+                        if (!removed)
+                            removed = filthIndoors.Remove(filth);
+                        filthOutdoors.Add(filth);
+                    }
+                }
+            }
+        }
+
         public bool RemoveFilth(Filth toRemove)
         {
             bool removed = 
