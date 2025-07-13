@@ -77,7 +77,6 @@ namespace PeteTimesSix.CategorizedCleaning.ModCompat
             else
             {
                 toInsert[1].operand = codeMatcher.InstructionAt(1).operand;
-                Log.Message("found field: "+toInsert[1].operand);
                 codeMatcher.Start();
             }
 
